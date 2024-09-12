@@ -1,0 +1,10 @@
+.informacoes {
+    background-color: #fff;
+    padding: 10px; /* Diminui o padding */
+    max-width: 800px; /* Define uma largura máxima */
+    margin: 0 auto; /* Centraliza o conteúdo */
+  }
+  
+  .informacoes p {
+    font-size: 14px; /* Diminui o tamanho da fonte */
+  }

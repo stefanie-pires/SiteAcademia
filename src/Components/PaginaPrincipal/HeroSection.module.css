@@ -1,0 +1,29 @@
+/* src/Components/PaginaPrincipal/HeroSection.module.css */
+.hero {
+  position: relative; /* Para garantir que o pseudo-elemento fique posicionado corretamente */
+  background-image: url('/public/Lembrete\ academia.jpg'); /* Caminho ajustado para a pasta public */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 100px; /* Ajuste conforme necessário */
+  width: 100%; /* Garante que o componente ocupe toda a largura da viewport */
+  height: 100vh; /* Garante que o componente ocupe toda a altura da viewport */
+  box-sizing: border-box; /* Inclui padding e bordas no cálculo da largura e altura total */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Cor preta com 30% de opacidade */
+  z-index: 1; /* Coloca a sobreposição acima da imagem de fundo */
+}
+
+.hero h2, .hero p {
+  position: relative; /* Para garantir que o texto fique acima da sobreposição */
+  z-index: 2; /* Coloca o texto acima da sobreposição */
+}
