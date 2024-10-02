@@ -1,26 +1,42 @@
-.header {
-  background-color: #fff; /* Cor de fundo branca */
+.header { 
+  background-color: #d4d4d4; /* Cor de fundo cinza mais escuro */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 8px 10px; /* Aumenta o padding superior/inferior um pouco */
+  height: auto; /* Garante que a altura se ajuste ao conteúdo */
 }
 
 .logo {
-  width: 100px; /* Ajuste o tamanho conforme necessário */
+  width: 75px; /* Mantém o tamanho do logo um pouco menor */
   height: auto; /* Mantém a proporção da imagem */
 }
 
 .nav {
-  list-style: none;
-  display: flex;
+  display: flex; /* Garante que os itens fiquem em linha */
+  align-items: center; /* Alinha verticalmente os itens */
+}
+
+.nav ul {
+  list-style: none; /* Remove as bolinhas */
+  padding: 0; /* Remove o padding padrão */
+  margin: 0; /* Remove a margin padrão */
+  display: flex; /* Garante que os itens fiquem em linha */
+  align-items: center; /* Alinha verticalmente os itens */
+  font-size: 14px;
 }
 
 .nav li {
-  margin-left: 10px;
+  margin: 0 10px; /* Espaçamento uniforme entre os itens */
 }
 
 .nav a {
   text-decoration: none;
   color: #333;
+  font-weight: bold; /* Deixa o texto em negrito */
+  font-family: 'Russo One', sans-serif; /* Aplica a fonte Russo One */
+}
+
+.separator {
+  margin: 0 10px; /* Espaçamento uniforme para o separador */
 }

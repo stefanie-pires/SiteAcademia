@@ -1,0 +1,38 @@
+.informacoes {
+  background-color: #a89eac; /* Cor de fundo */
+  padding: 10px; /* Espaçamento interno */
+  width: 100%; /* Garante que o contêiner ocupe 100% da largura */
+  margin: 0; /* Remove a margem para que ocupe toda a largura */
+  text-align: left; /* Alinha o texto à esquerda */
+  font-family: 'Russo One', sans-serif; /* Aplica a fonte Russo One */
+  display: flex; /* Permite o uso de flexbox */
+  flex-direction: column; /* Coloca os itens em coluna */
+  height: auto; /* Garante que o contêiner tenha altura automática */
+}
+
+.informacoes-container {
+  width: 100%; /* Garante que o contêiner interno ocupe 100% da largura */
+  display: flex; /* Permite que os itens internos sejam flexíveis */
+  flex-direction: column; /* Organiza os itens em coluna */
+}
+
+.informacoes h3 {
+  margin: 0 0 10px 0; /* Remove margens e define um espaço inferior */
+  font-size: 18px; /* Tamanho da fonte do título */
+}
+
+.informacoes p {
+  font-size: 14px; /* Tamanho da fonte */
+  line-height: 1.6; /* Aumenta a altura da linha para mais espaçamento */
+  margin-bottom: 15px; /* Espaçamento inferior entre os parágrafos */
+  width: 100%; /* Garante que a largura seja total */
+  white-space: normal; /* Permite a quebra de linha normal */
+}
+
+.informacoes .no-break {
+  white-space: nowrap; /* Impede a quebra de linha */
+}
+
+.informacoes strong {
+  font-weight: bold; /* Garante que o texto em negrito seja mais destacado */
+}

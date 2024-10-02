@@ -1,7 +1,7 @@
 /* src/Components/PaginaPrincipal/HeroSection.module.css */
 .hero {
   position: relative; /* Para garantir que o pseudo-elemento fique posicionado corretamente */
-  background-image: url('/public/Lembrete\ academia.jpg'); /* Caminho ajustado para a pasta public */
+  background-image: url('/public/LembreteAcademia.png'); /* Caminho ajustado para a pasta public */
   background-size: cover;
   background-position: center;
   color: white;
