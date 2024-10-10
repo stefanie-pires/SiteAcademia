@@ -1,0 +1,23 @@
+.loginContainer { /* Use o estilo correto */
+    position: relative; 
+    background-image: url('/public/LembreteAcademia.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px; 
+    width: 100%; 
+    height: 100vh; 
+    box-sizing: border-box; 
+}
+
+.input {
+    border: 1px solid #ddd; 
+}
+
+.button {
+    background-color: #4CAF50; 
+    color: #fff;
+}
+
+/* Certifique-se de que todas as classes referenciadas no index.js estão corretamente definidas no CSS */

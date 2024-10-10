@@ -1,17 +1,8 @@
 import React from 'react';
-import NavBar from './Components/NavBar';
-import PaginaPrincipal from './Components/PaginaPrincipal';
-import Informacoes from './Components/Informacoes';
-import './App.css';
+import AppRoutes from './routes'; // Verifique se o caminho está correto
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <NavBar />
-      <PaginaPrincipal />
-      <Informacoes />
-    </div>
+    <AppRoutes />
   );
 }
-
-export default App;
