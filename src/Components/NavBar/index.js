@@ -22,7 +22,7 @@ function Header() {
           </li>
           <span className={styles.separator}>|</span>
           <li>
-            <a href="/informacoes">Informações</a>
+            <a href="/informacoes">Login</a>
           </li>
         </ul>
       </nav>
