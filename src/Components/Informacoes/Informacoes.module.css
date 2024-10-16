@@ -1,13 +1,13 @@
-.informacoes {
+.informacoes { 
   background-color: #a89eac; /* Cor de fundo */
-  padding: 10px; /* Espaçamento interno */
-  width: 100%; /* Garante que o contêiner ocupe 100% da largura */
-  margin: 0; /* Remove a margem para que ocupe toda a largura */
-  text-align: left; /* Alinha o texto à esquerda */
+  padding: 10px 150px; /* Espaçamento interno: 10px em cima/embaixo e 20px à esquerda/direita */
+  width: calc(100% - 40px); /* Garante que o contêiner ocupe 100% da largura, subtraindo o padding lateral */
+  text-align: left; /* Alinha o texto ao centro */
   font-family: 'Russo One', sans-serif; /* Aplica a fonte Russo One */
   display: flex; /* Permite o uso de flexbox */
   flex-direction: column; /* Coloca os itens em coluna */
   height: auto; /* Garante que o contêiner tenha altura automática */
+  margin: 0 auto; /* Centraliza o contêiner horizontalmente */
 }
 
 .informacoes-container {
@@ -16,17 +16,19 @@
   flex-direction: column; /* Organiza os itens em coluna */
 }
 
+.informacoes h3, .informacoes p {
+  font-size: 14px; /* Tamanho da fonte menor */
+  line-height: 1.4; /* Aumenta a altura da linha */
+  margin-bottom: 10px; /* Espaçamento inferior */
+  width: 100%; /* Garante que a largura seja total */
+}
+
 .informacoes h3 {
-  margin: 0 0 10px 0; /* Remove margens e define um espaço inferior */
-  font-size: 18px; /* Tamanho da fonte do título */
+  font-weight: bold; /* Deixa o título em negrito */
 }
 
 .informacoes p {
-  font-size: 14px; /* Tamanho da fonte */
-  line-height: 1.6; /* Aumenta a altura da linha para mais espaçamento */
-  margin-bottom: 15px; /* Espaçamento inferior entre os parágrafos */
-  width: 100%; /* Garante que a largura seja total */
-  white-space: normal; /* Permite a quebra de linha normal */
+  font-weight: normal; /* Deixa o texto normal */
 }
 
 .informacoes .no-break {
