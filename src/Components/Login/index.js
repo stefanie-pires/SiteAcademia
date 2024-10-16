@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './styles.css';
+import './styles.css'; // Importando o CSS diretamente, sem o uso de módulos
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -12,31 +12,31 @@ function Login() {
   };
 
   return (
-    <div className={styles.loginContainer}> {/* Ajuste de loginContainer para login-container */}
+    <div className="login-container"> {/* Usando a classe diretamente */}
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div className={styles.inputGroup}>
+        <div className="input-group"> {/* Usando a classe diretamente */}
           <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={styles.input} // Verifique se a classe input está correta
+            className="input" // Usando a classe diretamente
           />
         </div>
-        <div className={styles.inputGroup}>
+        <div className="input-group"> {/* Usando a classe diretamente */}
           <label htmlFor="password">Senha:</label>
           <input
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className={styles.input}
+            className="input" // Usando a classe diretamente
           />
         </div>
-        <button type="submit" className={styles.button}>Entrar</button>
-        <p className={styles.link}>Primeiro acesso? <a href="#">Clique aqui</a></p>
+        <button type="submit" className="button">Entrar</button> {/* Usando a classe diretamente */}
+        <p className="link">Primeiro acesso? <a href="#">Clique aqui</a></p> {/* Usando a classe diretamente */}
       </form>
     </div>
   );
