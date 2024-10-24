@@ -1,0 +1,46 @@
+.hero {
+  background-image: url('/public/LembreteAcademia.png');
+  background-size: cover; /* Faz a imagem cobrir toda a área */
+  background-position: center; /* Centraliza a imagem */
+  padding: 40px 0; /* Adiciona um padding para a parte superior e inferior */
+}
+
+.horariosContainer {
+  padding: 20px;
+  margin: 0 auto; /* Centraliza o container */
+  max-width: 600px; /* Define uma largura máxima */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente para destacar o texto */
+}
+
+.horariosContainer {
+  padding: 10px; /* Diminui o padding do contêiner */
+  margin: 0 auto; /* Mantém o contêiner centralizado */
+  max-width: 400px; /* Reduz a largura máxima do contêiner */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.horariosElement {
+  display: flex; /* Usa flexbox para alinhar itens */
+  justify-content: space-between; /* Espaça os itens ao longo do eixo principal */
+  align-items: center; /* Alinha os itens verticalmente ao centro */
+  margin: 10px 0; /* Margem entre os elementos */
+  padding: 8px; /* Padding para menos espaço */
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+}
+
+.horariosTitle {
+  font-size: 1.2em; /* Tamanho da fonte do título */
+  color: #333;
+  margin: 0; /* Remove a margem inferior para alinhamento */
+}
+
+.horariosTime {
+  font-size: 1em; /* Tamanho da fonte do horário */
+  color: #666;
+}

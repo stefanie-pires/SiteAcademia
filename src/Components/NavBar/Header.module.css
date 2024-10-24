@@ -1,4 +1,4 @@
-.header { 
+.header {  
   background-color: #d4d4d4; /* Cor de fundo cinza mais escuro */
   display: flex;
   justify-content: space-between;
@@ -10,11 +10,14 @@
 .logo {
   width: 75px; /* Mantém o tamanho do logo um pouco menor */
   height: auto; /* Mantém a proporção da imagem */
+  margin-left: 30px; /* Adiciona margem à direita da logo */
 }
 
 .nav {
   display: flex; /* Garante que os itens fiquem em linha */
   align-items: center; /* Alinha verticalmente os itens */
+  flex-grow: 1; /* Permite que a nav ocupe espaço disponível */
+  justify-content: flex-end; /* Alinha os itens à direita */
 }
 
 .nav ul {
@@ -32,11 +35,29 @@
 
 .nav a {
   text-decoration: none;
-  color: #333;
+  color: #000000; /* Cor do texto em preto */
   font-weight: bold; /* Deixa o texto em negrito */
   font-family: 'Russo One', sans-serif; /* Aplica a fonte Russo One */
 }
 
 .separator {
   margin: 0 10px; /* Espaçamento uniforme para o separador */
+}
+
+/* Estilos para o botão de matrícula */
+.matriculaButton {
+  margin-left: 30px; /* Adiciona espaço entre os links e o botão */
+  margin-right: 30px;
+  padding: 8px 16px; /* Adiciona padding ao botão */
+  background-color: #ffffff; /* Cor de fundo do botão */
+  color: white; /* Cor do texto do botão em branco */
+  border: none; /* Remove a borda padrão */
+  border-radius: 4px; /* Bordas arredondadas */
+  cursor: pointer; /* Adiciona um ponteiro ao passar o mouse */
+  font-weight: bold; /* Texto em negrito */
+  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+.matriculaButton:hover {
+  background-color: #5d036e; /* Muda a cor ao passar o mouse */
 }

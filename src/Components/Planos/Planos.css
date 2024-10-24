@@ -1,0 +1,28 @@
+.planos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-image: url('/public/LembreteAcademia.png'); /* Imagem de fundo */
+    background-size: cover; /* Para cobrir todo o espaço */
+    background-position: center; /* Para centralizar a imagem */
+    min-height: 100vh; /* Garantir que a área ocupe pelo menos a altura da tela */
+  }
+  
+  .planos-list {
+    display: grid; /* Usando grid para o layout dos planos */
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 20px; /* Espaçamento entre os planos */
+    width: 100%; /* Para que a lista ocupe a largura disponível */
+  }
+  
+  .plano-card {
+    background: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente para os cartões */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  

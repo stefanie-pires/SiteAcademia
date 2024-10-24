@@ -1,30 +1,32 @@
 import React from 'react'; 
-import styles from './Header.module.css';
+import styles from './Header.module.css'; // Certifique-se de que o caminho esteja correto
+import { Link } from 'react-router-dom'; // Importando Link para navegação
 
-// Adicione a fonte Russo One
-const link = document.createElement('link');
-link.href = 'https://fonts.googleapis.com/css2?family=Russo+One&display=swap';
-link.rel = 'stylesheet';
-document.head.appendChild(link);
-
-function Header() {
+const Header = () => {
   return (
     <header className={styles.header}>
-      <img 
-        src="/Logo Fitness Preto e Amarelo Simples.png" 
-        alt="Logo da Academia" 
-        className={styles.logo} 
-      />
+      <Link to="/"> {/* Adicionando o Link aqui */}
+        <img 
+          src="/Logo Fitness Preto e Amarelo Simples.png" 
+          alt="Logo da Academia" 
+          className={styles.logo} 
+        />
+      </Link>
       <nav className={styles.nav}>
         <ul>
           <li>
-            <a href="/home">Home</a>
+            <Link to="/">Início</Link> 
           </li>
           <span className={styles.separator}>|</span>
           <li>
-            <a href="/informacoes">Login</a>
+            <Link to="/horarios">Horários</Link>
+          </li>
+          <span className={styles.separator}>|</span>
+          <li>
+            <Link to="/planos">Planos</Link> {/* Link para a página de Planos */}
           </li>
         </ul>
+        <Link to="/login" className={styles.matriculaButton}>Matrícula Online</Link> {/* Use o Link aqui */}
       </nav>
     </header>
   );

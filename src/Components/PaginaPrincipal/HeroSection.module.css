@@ -1,85 +1,92 @@
-.hero {    
-  position: relative; 
-  background-image: url('/public/LembreteAcademia.png'); 
-  background-size: cover; /* Garante que a imagem cubra toda a área */
-  background-position: center; /* Centraliza a imagem no contêiner */
-  background-repeat: no-repeat; /* Evita que a imagem se repita */
-  color: white;
-  padding: 100px; 
-  width: 100%; 
-  height: auto; /* Ajusta a altura conforme o conteúdo */
-  min-height: 100vh; /* Garante que o fundo ocupe pelo menos 100% da altura da viewport */
-  box-sizing: border-box; 
-  display: flex; 
-  align-items: center; /* Centraliza o conteúdo verticalmente */
-  justify-content: center; /* Centraliza o conteúdo horizontalmente */
-  z-index: 1; 
-  margin-bottom: 0; /* Remove margens brancas adicionais */
-}
-
-@media (max-width: 768px) {
-  .hero {
-    padding: 50px; /* Ajusta o padding em telas menores */
-    background-position: top; /* Alinha a imagem no topo em telas menores */
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 30px; /* Reduz ainda mais o padding em telas pequenas */
-    background-position: top; /* Mantém a imagem alinhada ao topo */
-  }
-}
-
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Remove margem e padding do body e html */
+body, html {
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3); 
-  z-index: -1; 
+  overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+  box-sizing: border-box;
 }
 
-.contentContainer {
-  display: flex; 
-  width: 100%; 
-}
-
-.leftContainer, .rightContainer {
-  width: 50%; 
-  display: flex; 
+.hero { 
+  position: relative;
+  background-image: url('/public/LembreteAcademia.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  padding: 50px;
+  width: 100vw; /* Garante que a largura seja 100% da viewport */
+  min-height: 100vh;
+  display: flex;
   flex-direction: column;
-  padding: 20px; 
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Garante que não haverá rolagem horizontal na seção */
+  font-size: 18px; /* Aumenta o tamanho base da fonte */
+}
+
+.hero__title {
+  font-size: 1.5rem; /* Tamanho maior para o título */
+  margin-bottom: 20px;
+}
+
+.sectionContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Espaço entre os dois blocos */
+  box-sizing: border-box; /* Para que padding não afete a largura total */
+}
+
+.block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Garante que o bloco ocupe toda a largura disponível */
+  box-sizing: border-box;
 }
 
 .textContainer {
-  flex: 1; 
-  padding: 20px; 
-  text-align: justify; 
+  flex: 1;
+  padding: 20px;
+  text-align: justify;
+  box-sizing: border-box; /* Para garantir que padding não afete a largura */
+  font-size: 1.25rem; /* Aumenta o tamanho do texto dos parágrafos */
+  max-width: 600px; /* Limita a largura máxima do texto */
+  word-spacing: normal; /* Normaliza o espaçamento entre palavras */
 }
 
-.imageContainer, .imageContainerBottom {
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  margin-top: 20px; 
+.imageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; /* Para garantir que padding não afete a largura */
 }
 
 .image {
-  max-width: 90%; 
-  height: auto; 
-  object-fit: contain; 
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
 }
 
-.hoursContainer {
-  display: flex; 
-  flex-direction: column; 
-  padding: 20px; 
-  text-align: left; 
-  color: white; 
-  margin-left: 80px; 
-  justify-content: flex-start; 
+@media (max-width: 768px) {
+  .block {
+    flex-direction: column; /* Em telas menores, os blocos ficam em coluna */
+  }
+  .textContainer {
+    order: 1; /* O texto aparece primeiro */
+  }
+  .imageContainer {
+    order: 2; /* A imagem aparece depois do texto */
+  }
+  .hero__title {
+    font-size: 2rem; /* Ajusta o tamanho do título em telas menores */
+  }
+  .textContainer {
+    font-size: 1.15rem; /* Ajusta o tamanho do texto em telas menores */
+  }
 }
