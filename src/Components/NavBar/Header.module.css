@@ -3,14 +3,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 10px; /* Aumenta o padding superior/inferior um pouco */
+  padding: 5px 10px; /* Diminui o padding superior/inferior */
   height: auto; /* Garante que a altura se ajuste ao conteúdo */
+  position: sticky; /* Torna o cabeçalho fixo ao rolar */
+  top: 0; /* Fixa na parte superior */
+  z-index: 1000; /* Para garantir que fique acima de outros elementos */
 }
 
+
 .logo {
-  width: 75px; /* Mantém o tamanho do logo um pouco menor */
+  width: 60px; /* Reduz o tamanho da logo */
   height: auto; /* Mantém a proporção da imagem */
-  margin-left: 30px; /* Adiciona margem à direita da logo */
+  margin-left: 20px; /* Diminui a margem à direita da logo */
 }
 
 .nav {
@@ -26,7 +30,7 @@
   margin: 0; /* Remove a margin padrão */
   display: flex; /* Garante que os itens fiquem em linha */
   align-items: center; /* Alinha verticalmente os itens */
-  font-size: 14px;
+  font-size: 14px; /* Ajusta o tamanho da fonte */
 }
 
 .nav li {
@@ -34,30 +38,80 @@
 }
 
 .nav a {
-  text-decoration: none;
+  text-decoration: none; /* Remove o sublinhado do link */
   color: #000000; /* Cor do texto em preto */
   font-weight: bold; /* Deixa o texto em negrito */
   font-family: 'Russo One', sans-serif; /* Aplica a fonte Russo One */
 }
 
-.separator {
-  margin: 0 10px; /* Espaçamento uniforme para o separador */
-}
-
+/* Estilos para o botão de matrícula */
 /* Estilos para o botão de matrícula */
 .matriculaButton {
-  margin-left: 30px; /* Adiciona espaço entre os links e o botão */
-  margin-right: 30px;
-  padding: 8px 16px; /* Adiciona padding ao botão */
+  margin-left: 15px; /* Adiciona espaço entre os links e o botão */
+  padding: 5px 10px; /* Diminui o padding do botão */
   background-color: #ffffff; /* Cor de fundo do botão */
-  color: white; /* Cor do texto do botão em branco */
+  color: black; /* Cor do texto do botão em preto */
   border: none; /* Remove a borda padrão */
   border-radius: 4px; /* Bordas arredondadas */
   cursor: pointer; /* Adiciona um ponteiro ao passar o mouse */
   font-weight: bold; /* Texto em negrito */
   transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+  text-decoration: none; /* Remove a linha embaixo do texto */
 }
 
 .matriculaButton:hover {
   background-color: #5d036e; /* Muda a cor ao passar o mouse */
+  color: white; /* Muda a cor do texto para branco ao passar o mouse */
+}
+
+
+/* Menu Hamburger */
+.menuToggle {
+  display: none; /* Esconde o menu hamburger por padrão */
+  flex-direction: column; /* Coloca os itens em coluna */
+  cursor: pointer; /* Ponteiro ao passar o mouse */
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: #000000; /* Cor das barras do hamburger */
+  margin: 3px 0; /* Espaço entre as barras */
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* Esconde a navegação padrão */
+  }
+
+  .menuToggle {
+    display: flex; /* Mostra o menu hamburger */
+    margin-right: 20px; /* Margem à direita do menu hamburger */
+  }
+
+  /* Menu expandido ao clicar no hamburger */
+  .nav.active {
+    display: flex; /* Mostra o menu quando ativo */
+    flex-direction: column; /* Coloca os itens em coluna */
+    position: fixed; /* Mantém o menu fixo */
+    top: 50px; /* Abaixo do cabeçalho */
+    right: 0; /* Alinha à direita */
+    background-color: #d4d4d4; /* Cor de fundo do menu */
+    width: 200px; /* Largura fixa do menu */
+    z-index: 10; /* Garante que fique acima de outros elementos */
+  }
+
+  /* Itens do menu empilhados */
+  .nav.active ul {
+    flex-direction: column; /* Alinha os itens em coluna */
+    align-items: flex-start; /* Alinha à esquerda */
+    margin: 0; /* Remove a margin padrão */
+    padding: 10px; /* Padding para os itens */
+    width: 100%; /* Largura total */
+  }
+
+  .nav.active li {
+    margin: 5px 0; /* Espaçamento uniforme entre os itens */
+  }
 }

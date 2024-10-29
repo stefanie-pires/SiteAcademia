@@ -1,46 +1,82 @@
 .hero {
   background-image: url('/public/LembreteAcademia.png');
-  background-size: cover; /* Faz a imagem cobrir toda a área */
-  background-position: center; /* Centraliza a imagem */
-  padding: 40px 0; /* Adiciona um padding para a parte superior e inferior */
+  background-size: cover;
+  background-position: center;
+  padding: 40px 20px; /* Adiciona padding nas laterais */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .horariosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   padding: 20px;
-  margin: 0 auto; /* Centraliza o container */
-  max-width: 600px; /* Define uma largura máxima */
+  margin: 0 auto;
+  max-width: 600px; /* Largura máxima */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente para destacar o texto */
-}
-
-.horariosContainer {
-  padding: 10px; /* Diminui o padding do contêiner */
-  margin: 0 auto; /* Mantém o contêiner centralizado */
-  max-width: 400px; /* Reduz a largura máxima do contêiner */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-.horariosElement {
-  display: flex; /* Usa flexbox para alinhar itens */
-  justify-content: space-between; /* Espaça os itens ao longo do eixo principal */
-  align-items: center; /* Alinha os itens verticalmente ao centro */
-  margin: 10px 0; /* Margem entre os elementos */
-  padding: 8px; /* Padding para menos espaço */
-  background-color: #ffffff;
-  border-radius: 5px;
-  border: 1px solid #e0e0e0;
+  background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente */
 }
 
 .horariosTitle {
-  font-size: 1.2em; /* Tamanho da fonte do título */
+  font-size: 1.1em;
   color: #333;
-  margin: 0; /* Remove a margem inferior para alinhamento */
+  margin: 0;
 }
 
 .horariosTime {
-  font-size: 1em; /* Tamanho da fonte do horário */
+  font-size: 0.9em;
   color: #666;
+}
+
+.horariosElement {
+  flex: 1 1 calc(50% - 20px); /* Largura responsiva */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; /* Ajustado para um melhor espaço interno */
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  font-size: 0.9em;
+  transition: transform 0.2s, background-color 0.2s; /* Transição suave */
+  position: relative; /* Para o posicionamento da informação adicional */
+  margin-bottom: 20px; /* Espaço inferior para evitar sobreposição */
+}
+
+.additionalInfo {
+  margin-left: 10px; /* Espaçamento entre o horário e a informação adicional */
+  font-size: 0.8em; /* Tamanho da fonte para a informação adicional */
+  color: #666; /* Cor do texto da informação adicional */
+  display: none; /* Oculta por padrão */
+}
+
+/* Mostrar a informação adicional ao passar o mouse */
+.horariosElement:hover .additionalInfo {
+  display: block; /* Exibe a informação ao passar o mouse */
+}
+
+/* Efeito ao passar o mouse na caixa principal */
+.horariosElement:hover {
+  background-color: #bba4c5; /* Cor lilás ao passar o mouse */
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+  .horariosContainer {
+    max-width: 90%; /* Mantém a centralização sem colar nas bordas */
+  }
+
+  .horariosElement {
+    flex: 1 1 100%; /* Empilha os itens */
+  }
+}
+
+@media (max-width: 480px) {
+  .horariosElement {
+    padding: 6px;
+  }
 }
