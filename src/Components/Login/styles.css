@@ -1,18 +1,25 @@
-/* Estilos para a página de login */
+.hero {
+  background-image: url('/public/LembreteAcademia.png');
+  background-size: cover;
+  background-position: center;
+  padding: 40px 20px; /* Adiciona padding nas laterais */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Altura mínima */
+}
+
 .login-container { 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  height: 100vh; /* Altura ocupa 100% da viewport */
-  width: 100%; /* Largura ocupa 100% da viewport */
   background: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-image: url('/public/LembreteAcademia.png'); /* Imagem de fundo */
-  background-size: cover; /* Para cobrir todo o espaço */
-  background-position: center; /* Para centralizar a imagem */
-  position: relative; /* Permite que o elemento seja posicionado em relação aos seus filhos */
+  border-radius: 8px; /* Bordas arredondadas */
+  max-width: 400px; /* Largura máxima do formulário */
+  width: 100%; /* Para ocupar a largura total */
 }
 
 .input-group {
