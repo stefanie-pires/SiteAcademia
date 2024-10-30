@@ -29,9 +29,12 @@ const Header = () => {
           <li>
             <Link to="/planos">Planos</Link>
           </li>
+          <li>
+            <Link to="/login">Área do Aluno</Link>
+          </li>
         </ul>
       </nav>
-      <Link to="/login" className={styles.matriculaButton}>Matrícula Online</Link> 
+      <Link to="/cadastro" className={styles.matriculaButton}>Matrícula Online</Link> 
       <div className={styles.menuToggle} onClick={toggleMenu}>
         <div className={styles.bar}></div>
         <div className={styles.bar}></div>

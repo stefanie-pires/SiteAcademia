@@ -6,47 +6,60 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-  }
-  
-  .container {
+    min-height: 100vh; /* Altura mínima para cobrir a viewport */
+}
+
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px; /* Aumentado para um pouco mais de espaçamento */
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+    border-radius: 10px; /* Bordas mais arredondadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
     max-width: 600px; /* Largura máxima do formulário */
     width: 100%; /* Para ocupar a largura total */
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #45a049;
-  }
-  
-  .link {
-    margin-top: 10px;
-  }
-  
+}
+
+h2 {
+    margin-bottom: 15px; /* Espaçamento abaixo do título */
+    color: #333; /* Cor do título */
+}
+
+.input-group {
+    margin-bottom: 20px; /* Maior espaçamento entre os campos */
+    width: 100%; /* Para garantir que a largura total seja usada */
+}
+
+.input {
+    width: 100%; /* Campo ocupa toda a largura disponível */
+    padding: 12px; /* Aumentado para maior conforto */
+    border: 1px solid #ccc; /* Borda do campo */
+    border-radius: 4px; /* Borda arredondada */
+    font-size: 1em; /* Tamanho da fonte mais legível */
+}
+
+.input:focus {
+    border-color: #4CAF50; /* Cor da borda ao focar no campo */
+    outline: none; /* Remove o contorno padrão */
+}
+
+.button {
+    background-color: #4CAF50; /* Cor do botão */
+    color: white; /* Cor do texto do botão */
+    padding: 12px 20px; /* Espaçamento interno do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Adiciona um ponteiro ao passar o mouse */
+    font-size: 1em; /* Tamanho da fonte do botão */
+    transition: background-color 0.3s; /* Transição suave para a cor do botão */
+}
+
+.button:hover {
+    background-color: #45a049; /* Cor do botão ao passar o mouse */
+}
+
+.link {
+    margin-top: 10px; 
+}

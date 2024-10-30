@@ -116,6 +116,22 @@ function Cadastro() {
             </select>
           </div>
           <div className="input-group">
+            <label htmlFor="planos">Planos:</label>
+            <select
+              id="planos"
+              name="planos"
+              value={formData.plano}
+              onChange={handleChange}
+              className="input"
+            >
+              <option value="">Selecione</option>
+              <option value="flex">Plano Flex</option>
+              <option value="fit">Plano Fit</option>
+              <option value="master">Plano Master</option>
+              <option value="gold">Plano Gold</option>
+            </select>
+          </div>
+          <div className="input-group">
             <label htmlFor="senha">Senha:</label>
             <input
               type="password"
