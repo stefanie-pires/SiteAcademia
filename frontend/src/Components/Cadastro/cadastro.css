@@ -1,0 +1,106 @@
+/* Hero Section */
+.hero {
+    background-image: url('/public/LembreteAcademia.png');
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Altura mínima para cobrir a viewport */
+}
+
+/* Container do formulário */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
+    max-width: 600px; /* Largura máxima do formulário */
+    width: 100%;
+    margin: 0 auto; /* Centraliza a container na tela */
+    box-sizing: border-box; /* Garante que padding não afete o cálculo da largura */
+}
+
+/* Título do formulário */
+h2 {
+    margin-bottom: 20px; /* Aumenta a margem inferior para melhorar o espaçamento */
+    color: #333;
+    font-size: 2em; /* Tamanho do título ajustado para maior destaque */
+    font-weight: bold;
+}
+
+/* Estilos para grupos de inputs */
+.input-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Campos de entrada */
+.input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box; /* Garante que o padding não quebre a largura do campo */
+    transition: border-color 0.3s;
+}
+
+/* Foco nos campos de entrada */
+.input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Botão de envio */
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px; /* Aumenta o padding para dar mais destaque ao botão */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em; /* Aumenta o tamanho da fonte para tornar o botão mais legível */
+    width: 100%; /* Faz o botão ocupar toda a largura disponível */
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+/* Hover do botão */
+.button:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* Leve aumento de tamanho para efeito visual */
+}
+
+/* Estilos para o link */
+.link {
+    margin-top: 10px;
+    font-size: 0.9em; /* Ajusta o tamanho do link */
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline; /* Adiciona o sublinhado ao passar o mouse no link */
+}
+
+/* Estilo responsivo para telas pequenas */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; /* Reduz o padding para telas menores */
+        width: 90%; /* Dá mais espaço para a container em telas pequenas */
+    }
+
+    h2 {
+        font-size: 1.6em; /* Reduz o tamanho do título em telas pequenas */
+    }
+
+    .button {
+        font-size: 1em; /* Ajusta o tamanho da fonte do botão */
+        padding: 12px 18px; /* Ajusta o padding do botão */
+    }
+}

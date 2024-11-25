@@ -5,14 +5,17 @@ function Cadastro() {
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
-    rgOuCpf: '',
+    cpf: '',
     telefone: '',
     endereco: '',
-    naturalidade: '',
+    dataNascimento: '',
     sexo: '',
+    plano: '',
     senha: '',
     confirmarSenha: ''
   });
+
+  const [message, setMessage] = useState(''); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,20 +25,74 @@ function Cadastro() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Dados do Cadastro:', formData);
-    // Adicione a lógica para enviar os dados aqui
+
+    // Validação de senhas
+    if (formData.senha !== formData.confirmarSenha) {
+      setMessage("As senhas não coincidem.");
+      return;
+    }
+
+    // Validação do CPF
+    const cpfRegex = /^[0-9]{11}$/;
+    if (!cpfRegex.test(formData.cpf)) {
+      setMessage("CPF inválido. O CPF deve conter 11 números.");
+      return;
+    }
+
+    // Verificação de campos obrigatórios
+    for (const field in formData) {
+      if (formData[field] === '') {
+        setMessage(`O campo ${field} é obrigatório.`);
+        return;
+      }
+    }
+
+    try {
+      const response = await fetch('http://localhost:3001/cadastro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Verifica se a resposta foi bem-sucedida (status 200 ou 201)
+      if (response.ok) {
+        const result = await response.json();
+        setMessage(result.message || 'Cadastro realizado com sucesso!');
+        
+        // Limpar o formulário após o sucesso
+        setFormData({
+          nome: '',
+          email: '',
+          cpf: '',
+          telefone: '',
+          endereco: '',
+          dataNascimento: '',
+          sexo: '',
+          plano: '',
+          senha: '',
+          confirmarSenha: ''
+        });
+      } else {
+        const errorResult = await response.json();
+        setMessage(`Erro: ${errorResult.message || 'Erro desconhecido'}`);
+      }
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error);
+      setMessage('Erro ao cadastrar usuário');
+    }
   };
 
   return (
     <div className="hero">
       <div className="container">
         <h2>Cadastro</h2>
-        <p>Este é o formulário de cadastro.</p>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
-            <label htmlFor="nome">Nome:</label>
+            <label htmlFor="nome">Nome completo:</label>
             <input
               type="text"
               id="nome"
@@ -43,10 +100,11 @@ function Cadastro() {
               value={formData.nome}
               onChange={handleChange}
               className="input"
+              required
             />
           </div>
           <div className="input-group">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">E-mail:</label>
             <input
               type="email"
               id="email"
@@ -54,21 +112,23 @@ function Cadastro() {
               value={formData.email}
               onChange={handleChange}
               className="input"
+              required
             />
           </div>
           <div className="input-group">
-            <label htmlFor="rgOuCpf">RG ou CPF:</label>
+            <label htmlFor="cpf">CPF:</label>
             <input
               type="text"
-              id="rgOuCpf"
-              name="rgOuCpf"
-              value={formData.rgOuCpf}
+              id="cpf"
+              name="cpf"
+              value={formData.cpf}
               onChange={handleChange}
               className="input"
+              required
             />
           </div>
           <div className="input-group">
-            <label htmlFor="telefone">Telefone:</label>
+            <label htmlFor="telefone">Número de telefone:</label>
             <input
               type="text"
               id="telefone"
@@ -76,6 +136,7 @@ function Cadastro() {
               value={formData.telefone}
               onChange={handleChange}
               className="input"
+              required
             />
           </div>
           <div className="input-group">
@@ -87,17 +148,19 @@ function Cadastro() {
               value={formData.endereco}
               onChange={handleChange}
               className="input"
+              required
             />
           </div>
           <div className="input-group">
-            <label htmlFor="naturalidade">Naturalidade:</label>
+            <label htmlFor="dataNascimento">Data de nascimento:</label>
             <input
-              type="text"
-              id="naturalidade"
-              name="naturalidade"
-              value={formData.naturalidade}
+              type="date"
+              id="dataNascimento"
+              name="dataNascimento"
+              value={formData.dataNascimento}
               onChange={handleChange}
               className="input"
+              required
             />
           </div>
           <div className="input-group">
@@ -108,6 +171,7 @@ function Cadastro() {
               value={formData.sexo}
               onChange={handleChange}
               className="input"
+              required
             >
               <option value="">Selecione</option>
               <option value="masculino">Masculino</option>
@@ -116,13 +180,14 @@ function Cadastro() {
             </select>
           </div>
           <div className="input-group">
-            <label htmlFor="planos">Planos:</label>
+            <label htmlFor="plano">Escolha do plano:</label>
             <select
-              id="planos"
-              name="planos"
+              id="plano"
+              name="plano"
               value={formData.plano}
               onChange={handleChange}
               className="input"
+              required
             >
               <option value="">Selecione</option>
               <option value="flex">Plano Flex</option>
@@ -132,7 +197,7 @@ function Cadastro() {
             </select>
           </div>
           <div className="input-group">
-            <label htmlFor="senha">Senha:</label>
+            <label htmlFor="senha">Senha de acesso:</label>
             <input
               type="password"
               id="senha"
@@ -140,10 +205,11 @@ function Cadastro() {
               value={formData.senha}
               onChange={handleChange}
               className="input"
+              required
             />
           </div>
           <div className="input-group">
-            <label htmlFor="confirmarSenha">Confirmar Senha:</label>
+            <label htmlFor="confirmarSenha">Confirmar senha:</label>
             <input
               type="password"
               id="confirmarSenha"
@@ -151,13 +217,16 @@ function Cadastro() {
               value={formData.confirmarSenha}
               onChange={handleChange}
               className="input"
+              required
             />
           </div>
           <button type="submit" className="button">Cadastrar</button>
         </form>
+        {message && <p>{message}</p>}
       </div>
     </div>
   );
 }
 
 export default Cadastro;
+
