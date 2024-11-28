@@ -8,14 +8,14 @@ function Cadastro() {
     cpf: '',
     telefone: '',
     endereco: '',
-    dataNascimento: '',
+    data_nascimento: '',
     sexo: '',
     plano: '',
     senha: '',
     confirmarSenha: ''
   });
 
-  const [message, setMessage] = useState(''); 
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,6 +50,7 @@ function Cadastro() {
     }
 
     try {
+      console.log(formData);
       const response = await fetch('http://localhost:3001/cadastro', {
         method: 'POST',
         headers: {
@@ -58,11 +59,15 @@ function Cadastro() {
         body: JSON.stringify(formData),
       });
 
-      // Verifica se a resposta foi bem-sucedida (status 200 ou 201)
       if (response.ok) {
         const result = await response.json();
         setMessage(result.message || 'Cadastro realizado com sucesso!');
         
+        // Redirecionar após sucesso
+        setTimeout(() => {
+          window.location.href = '/login'; // Redireciona para a página de login
+        }, 2000);
+
         // Limpar o formulário após o sucesso
         setFormData({
           nome: '',
@@ -70,7 +75,7 @@ function Cadastro() {
           cpf: '',
           telefone: '',
           endereco: '',
-          dataNascimento: '',
+          data_nascimento: '',
           sexo: '',
           plano: '',
           senha: '',
@@ -152,12 +157,12 @@ function Cadastro() {
             />
           </div>
           <div className="input-group">
-            <label htmlFor="dataNascimento">Data de nascimento:</label>
+            <label htmlFor="data_nascimento">Data de nascimento:</label>
             <input
               type="date"
-              id="dataNascimento"
-              name="dataNascimento"
-              value={formData.dataNascimento}
+              id="data_nascimento"
+              name="data_nascimento"
+              value={formData.data_nascimento}
               onChange={handleChange}
               className="input"
               required
@@ -197,7 +202,7 @@ function Cadastro() {
             </select>
           </div>
           <div className="input-group">
-            <label htmlFor="senha">Senha de acesso:</label>
+            <label htmlFor="senha">Senha:</label>
             <input
               type="password"
               id="senha"
@@ -209,7 +214,7 @@ function Cadastro() {
             />
           </div>
           <div className="input-group">
-            <label htmlFor="confirmarSenha">Confirmar senha:</label>
+            <label htmlFor="confirmarSenha">Confirmar Senha:</label>
             <input
               type="password"
               id="confirmarSenha"
@@ -220,13 +225,12 @@ function Cadastro() {
               required
             />
           </div>
+          {message && <p className="error">{message}</p>}
           <button type="submit" className="button">Cadastrar</button>
         </form>
-        {message && <p>{message}</p>}
       </div>
     </div>
   );
 }
 
 export default Cadastro;
-

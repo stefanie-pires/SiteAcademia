@@ -1,0 +1,186 @@
+/* Seção principal com fundo */
+.hero {
+    background-image: url('/public/LembreteAcademia.png');
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garante que cobre a altura total da tela */
+}
+
+/* Container centralizado com fundo semi-transparente */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    max-width: 700px; /* Largura máxima do conteúdo */
+    width: 100%;
+    margin: 0 auto; /* Centraliza horizontalmente */
+    box-sizing: border-box;
+}
+
+/* Título */
+h2, h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 2em; /* Tamanho do título */
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Texto de parágrafos */
+p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Formulário */
+form {
+    width: 100%;
+}
+
+/* Grupos de input */
+.input-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Campo de texto */
+.input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+/* Foco no input */
+.input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Botões */
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    width: 100%; /* Ocupa toda a largura */
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    margin-bottom: 10px; /* Espaço entre botões */
+}
+
+/* Botão de excluir com cor diferente */
+.button:last-of-type {
+    background-color: #e74c3c; /* Vermelho */
+}
+
+/* Hover nos botões */
+.button:hover {
+    background-color: #45a049; /* Verde mais escuro para o botão padrão */
+    transform: scale(1.05);
+}
+
+.button:last-of-type:hover {
+    background-color: #c0392b; /* Vermelho mais escuro */
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h2, h3 {
+        font-size: 1.6em; /* Ajuste do tamanho do título */
+    }
+
+    .button {
+        font-size: 1em;
+        padding: 12px 18px;
+    }
+}
+
+/* Estilo para exibição de dados do cliente */
+.cliente-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cliente-info p {
+    font-size: 1.2em;
+    color: #333;
+    margin: 5px 0;
+}
+
+.cliente-info strong {
+    font-weight: bold;
+}
+
+/* Ajustes no layout dos botões na visualização */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Estilo para o botão Editar/Excluir lado a lado */
+.button-group .button {
+    width: 48%; /* Faz com que os botões fiquem lado a lado */
+}
+
+/* Estilo adicional para a edição de senha */
+.senha-edicao {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.senha-edicao .input-group {
+    margin-bottom: 15px;
+}
+
+.senha-edicao .input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.senha-edicao .button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.senha-edicao .button:hover {
+    background-color: #2980b9;
+}
+
+.senha-edicao .erro {
+    color: red;
+    margin-top: 10px;
+}

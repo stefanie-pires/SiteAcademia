@@ -27,9 +27,27 @@ body, html {
   font-size: 18px; /* Aumenta o tamanho base da fonte */
 }
 
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Overlay preto mais intenso */
+  z-index: 1;
+}
+
+.hero * {
+  position: relative; /* Mantém o texto acima do overlay */
+  z-index: 2;
+}
+
 .hero__title {
-  font-size: 1.5rem; /* Tamanho maior para o título */
+  font-size: 2.5rem; /* Tamanho maior para o título */
   margin-bottom: 20px;
+  color: white; /* Texto permanece branco */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 1); /* Sombra mais definida */
 }
 
 .sectionContainer {
@@ -38,6 +56,7 @@ body, html {
   flex-direction: column;
   gap: 40px; /* Espaço entre os dois blocos */
   box-sizing: border-box; /* Para que padding não afete a largura total */
+  color: white;
 }
 
 .block {
@@ -53,9 +72,11 @@ body, html {
   padding: 20px;
   text-align: justify;
   box-sizing: border-box; /* Para garantir que padding não afete a largura */
-  font-size: 1.25rem; /* Aumenta o tamanho do texto dos parágrafos */
+  font-size: 1.5rem; /* Aumenta o tamanho do texto dos parágrafos */
   max-width: 600px; /* Limita a largura máxima do texto */
   word-spacing: normal; /* Normaliza o espaçamento entre palavras */
+  color: white; /* Texto permanece branco */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 1); /* Sombra mais definida */
 }
 
 .imageContainer {
@@ -87,6 +108,6 @@ body, html {
     font-size: 2rem; /* Ajusta o tamanho do título em telas menores */
   }
   .textContainer {
-    font-size: 1.15rem; /* Ajusta o tamanho do texto em telas menores */
+    font-size: 1.25rem; /* Ajusta o tamanho do texto em telas menores */
   }
 }

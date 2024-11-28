@@ -7,6 +7,7 @@ import Informacoes from "./Components/Informacoes";
 import Horarios from "./Components/Horarios/horarios"; 
 import Planos from './Components/Planos/planos'; 
 import Cadastro from './Components/Cadastro/cadastro';
+import ClienteDetalhes from './Components/DadosCliente/ClienteDetalhes';
 
 export default function AppRoutes() {
   return (
@@ -18,8 +19,9 @@ export default function AppRoutes() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/horarios" element={<Horarios />} />
         <Route path="/planos" element={<Planos />} />
+        <Route path="/ClienteDetalhes" element={<ClienteDetalhes />} />
       </Routes>
-      {/* O componente Informacoes pode ser movido para uma rota específica ou exibido globalmente */}
+      {/* Se Informacoes for um componente global (como um rodapé ou informação que aparece em todas as páginas), ele pode ser colocado fora de Routes */}
       <Informacoes />
     </BrowserRouter>
   );
