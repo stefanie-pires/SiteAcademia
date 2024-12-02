@@ -8,8 +8,9 @@ import Horarios from "./Components/Horarios/horarios";
 import Planos from './Components/Planos/planos'; 
 import Cadastro from './Components/Cadastro/cadastro';
 import ClienteDetalhes from './Components/DadosCliente/ClienteDetalhes';
-import Erro from "./Components/Erro/ProtectedRoute";
-import ProtectedRoute from "./Components/Erro/ProtectedRoute";
+import ProtectedRoute from "./Components/Pages/ProtectedRoute";
+
+
 
 export default function AppRoutes() {
   return (
@@ -20,7 +21,7 @@ export default function AppRoutes() {
         <Route path="/login" element={<Login />} />
         
         {/* Protege a rota /detalhes com o ProtectedRoute */}
-        <Route path="/pessoa" element={<ProtectedRoute errorPage={<Erro />} targetPage={<ClienteDetalhes />} />} />
+        <Route path="/pessoa" element={<ProtectedRoute errorPage={<Error />} targetPage={<ClienteDetalhes />} />} />
         
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/horarios" element={<Horarios />} />

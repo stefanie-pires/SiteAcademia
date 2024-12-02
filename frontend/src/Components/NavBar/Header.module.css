@@ -83,6 +83,9 @@
 @media (max-width: 768px) {
   .nav {
     display: none; /* Esconde a navegação padrão */
+    .menuToggle:hover + .nav {
+      display: flex; /* Mostra o menu ao passar o mouse */
+    }
   }
 
   .menuToggle {
@@ -105,7 +108,7 @@
   /* Itens do menu empilhados */
   .nav.active ul {
     flex-direction: column; /* Alinha os itens em coluna */
-    align-items: flex-start; /* Alinha à esquerda */
+    align-items: center; /* Alinha à esquerda */
     margin: 0; /* Remove a margin padrão */
     padding: 10px; /* Padding para os itens */
     width: 100%; /* Largura total */

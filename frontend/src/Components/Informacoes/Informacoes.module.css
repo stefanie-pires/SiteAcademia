@@ -1,8 +1,8 @@
-.informacoes { 
-  background-color: #a89eac; /* Cor de fundo */
-  padding: 5px 10px; /* Reduz o espaçamento interno */
+.informacoes {
+  background-color: #a89eac; /* Mantém a cor de fundo */
+  padding: 15px 20px; /* Aumenta o espaçamento interno */
   width: 100%; /* Garante que o contêiner ocupe 100% da largura */
-  height: auto; /* Altura automática para ajustar ao conteúdo */
+  height: auto; /* Altura ajustada ao conteúdo */
   display: flex; /* Permite o uso de flexbox */
   justify-content: center; /* Centraliza horizontalmente */
   align-items: center; /* Centraliza verticalmente */
@@ -10,7 +10,11 @@
 }
 
 .informacoesContainer {
-  text-align: center; /* Alinha o texto ao centro */
+  text-align: center; /* Mantém o alinhamento do texto */
+  display: flex; /* Usa flexbox para alinhar os itens */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Centraliza os itens verticalmente */
+  gap: 10px; /* Adiciona espaçamento entre a frase e as logos */
 }
 
 .informacoes h3, .informacoes p {
@@ -22,4 +26,30 @@
 
 .informacoes .noBreak {
   white-space: nowrap; /* Impede a quebra de linha */
+}
+.socialMedia {
+  display: flex; /* Garante que os ícones fiquem alinhados em linha */
+  gap: 5px; /* Espaçamento pequeno entre os ícones */
+}
+
+.icon {
+  width: 30px; /* Aumenta o tamanho das logos */
+  height: 30px;
+  transition: transform 0.2s, opacity 0.2s; /* Efeito de hover */
+
+}
+
+.icon:hover {
+  transform: scale(1.3); /* Aumenta o tamanho no hover */
+  opacity: 0.9; /* Mantém a visibilidade alta no hover */
+}
+@media (max-width: 768px) {
+  .informacoes h3, .informacoes p {
+    font-size: 10px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
 }

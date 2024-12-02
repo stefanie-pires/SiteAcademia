@@ -72,15 +72,6 @@ function ClienteDetalhes() {
     }));
   };
 
-  if (!cliente) {
-    return (
-      <div className="hero">
-        <div className="container">
-          <h2>Carregando...</h2>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="hero">
