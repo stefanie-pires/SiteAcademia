@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql2');
 const cors = require('cors');
-const jwt = require('jsonwebtoken'); // Adicionando JWT
-const bcrypt = require('bcrypt'); // Adicionando bcrypt para criptografar as senhas
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // Middleware para permitir requisições CORS
 app.use(cors());
@@ -64,55 +64,35 @@ app.post('/cadastro', async (req, res) => {
 app.post('/login', (req, res) => {
   const { email, senha } = req.body;
 
-  console.log('Tentativa de login com:', req.body);
+  // Consultando o banco para verificar o usuário
+  db.query(
+      `SELECT * FROM pessoa WHERE email = ?`,
+      [email],
+      async (err, results) => {
+          if (err) {
+              console.error('Erro na consulta por Login:', err);
+              return res.status(500).json({ error: 'Erro ao consultar usuário.' });
+          }
+          if (results.length === 0) {
+              return res.status(404).send('Usuário não encontrado.');
+          }
 
-  // Definindo a query para buscar o usuário pelo email
-  const query = `SELECT * FROM pessoa WHERE email = ?`;
+          // Verificando a senha
+          const isMatch = await bcrypt.compare(senha, results[0].senha);
+          if (!isMatch) {
+            return res.status(401).send('Senha inválida.');
+          }
 
-  // Executando a query para buscar o usuário
-  db.query(query, [email], async (err, results) => {
-    if (err) {
-      console.error('Erro ao executar a consulta de login:', err);
-      return res.status(500).json({ message: 'Erro no servidor', error: err.message });
-    }
+          // Gerando o token JWT
+          const token = jwt.sign(
+              { id: results[0].id },  // Passando o ID do usuário no payload do JWT
+              SECRET_KEY,
+              { expiresIn: '2 days' }
+          );
 
-    if (results.length === 0) {
-      console.log('Email ou senha inválidos');
-      return res.status(401).json({ message: 'Email ou senha inválidos' });
-    }
-
-    const usuario = results[0];
-
-    // Verificando a senha utilizando bcrypt
-    const isPasswordValid = await bcrypt.compare(senha, usuario.senha);
-    if (!isPasswordValid) {
-      console.log('Senha inválida');
-      return res.status(401).json({ message: 'Email ou senha inválidos' });
-    }
-
-    // Gerando o token JWT
-    const token = jwt.sign(
-      { id: usuario.id, email: usuario.email }, // Payload
-      SECRET_KEY, // Chave secreta
-      { expiresIn: '1h' } // Expiração de 1 hora
-    );
-
-    console.log('Login bem-sucedido, token gerado:', token);
-
-    // Retornando os dados do usuário e o token
-    return res.status(200).json({
-      id: usuario.id,
-      nome: usuario.nome,
-      email: usuario.email,
-      cpf: usuario.cpf,
-      telefone: usuario.telefone,
-      endereco: usuario.endereco,
-      data_nascimento: usuario.data_nascimento,
-      sexo: usuario.sexo,
-      plano: usuario.plano,
-      token, // Enviando o token JWT
-    });
-  });
+          return res.json({ token: token });
+      }
+  );    
 });
 
 // Middleware para autenticação com JWT (protege rotas)
@@ -132,7 +112,7 @@ function authenticateToken(req, res, next) {
 
 // Rota PUT para atualizar os dados do cliente (protegida com JWT)
 app.put('/pessoa/:id', authenticateToken, async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params;  // Captura o ID do cliente da URL
   const { nome, email, cpf, telefone, endereco, data_nascimento, sexo, plano, senha } = req.body;
 
   console.log('Atualizando dados do cliente:', req.body);
@@ -171,7 +151,7 @@ app.put('/pessoa/:id', authenticateToken, async (req, res) => {
 
 // Rota DELETE para excluir um cliente (protegida com JWT)
 app.delete('/pessoa/:id', authenticateToken, (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params;  // Captura o ID do cliente da URL
 
   console.log('Excluindo cliente com ID:', id);
 

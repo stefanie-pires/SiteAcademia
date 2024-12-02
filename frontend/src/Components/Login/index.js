@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import './styles.css';
 
 function Login() {
@@ -13,43 +14,28 @@ function Login() {
     setError(''); // Limpa qualquer erro anterior
 
     try {
-      const response = await fetch('http://localhost:3001/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          senha: password, // Verifique se 'senha' é o nome correto no backend
-        }),
+      const response = await axios.post('http://localhost:3001/login', {
+        email,
+        senha: password, // Confirme que 'senha' é o nome correto no backend
       });
 
-      const data = await response.json();
+      // Exibe os dados retornados pelo servidor no console (opcional para debug)
+      console.log(response.data);
 
-      if (!response.ok) {
-        if (response.status === 401) {
-          setError('Email ou senha inválidos.');
-        } else {
-          setError(data.message || 'Erro desconhecido.');
-        }
-        return;
-      }
+      // Armazena o token no sessionStorage
+      sessionStorage.setItem('token', response.data.token);
 
-      // Verifica se o token está presente e o armazena no localStorage
-      if (data.token) {
-        localStorage.setItem('authToken', data.token);
-        console.log('Token armazenado:', data.token);
-        
-        // Verifica se o objeto cliente está presente e redireciona
-        if (data.usuario && data.usuario.id) {
-          navigate(`/cliente/${data.usuario.id}`); // Redireciona para a página de detalhes do cliente
-        } else {
-          setError('Dados do cliente não encontrados.');
-        }
-      } else {
-        setError('Token não recebido.');
-      }
+      // Redireciona para a página de detalhes
+      navigate('/pessoa');
     } catch (err) {
       console.error('Erro no login:', err);
-      setError('Erro ao conectar ao servidor. Tente novamente mais tarde.');
+
+      // Verifica se o erro é de autenticação ou outro problema
+      if (err.response && err.response.status === 401) {
+        setError('Email ou senha inválidos.');
+      } else {
+        setError('Erro ao conectar ao servidor. Tente novamente mais tarde.');
+      }
     }
   };
 

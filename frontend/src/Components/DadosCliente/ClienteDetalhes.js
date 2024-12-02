@@ -1,33 +1,66 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // Importar useLocation para acessar os dados passados pela navegação
+import { useNavigate, useParams } from 'react-router-dom';  // Adicionando useParams
+import axios from 'axios';
 import './ClienteDetalhes.css';
 
 function ClienteDetalhes() {
-  const { state } = useLocation(); // Obtendo os dados passados via navigate
-  const [cliente, setCliente] = useState(state?.cliente || null); // Definindo os dados do cliente
+  const { clienteId } = useParams();  // Capturando o clienteId da URL
+  const [cliente, setCliente] = useState(null); // Dados do cliente
   const [editando, setEditando] = useState(false);
+  const [mensagem, setMensagem] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (state?.cliente) {
-      setCliente(state.cliente); // Atualiza os dados do cliente caso estejam disponíveis
-    }
-  }, [state]);
+    const fetchCliente = async () => {
+      const token = sessionStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+        return;
+      }
 
-  const handleEdit = () => {
-    if (!cliente.nome || !cliente.email || !cliente.cpf || !cliente.senha) {
-      alert('Por favor, preencha todos os campos obrigatórios!');
-      return;
-    }
-    // Lógica para editar os dados
-    alert('Dados atualizados!');
-    setEditando(false);
-  };
+      try {
+        const response = await axios.get(`http://localhost:3001/pessoa/${clienteId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(response.data);  // Adicionando log para verificar os dados
+        setCliente(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar os dados do cliente:', error);
+        setMensagem('Erro ao buscar os dados do cliente.');
+        navigate('/login');
+      }
+    };
 
-  const handleDelete = () => {
-    if (window.confirm('Você tem certeza que deseja excluir este cliente?')) {
-      // Lógica para excluir o cliente
-      alert('Cliente excluído!');
-      setCliente(null); // Limpa os dados do cliente
+    if (clienteId) {
+      fetchCliente();
+    }
+  }, [clienteId, navigate]);  // A dependência agora inclui clienteId
+
+  const handleEdit = async () => {
+    try {
+      const token = sessionStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+
+      await axios.put(
+        `http://localhost:3001/pessoa/${cliente.id}`, // Altere 'detalhes' para 'pessoa' e inclua o id
+        cliente,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setMensagem('Dados atualizados com sucesso!');
+      setEditando(false);
+    } catch (error) {
+      console.error('Erro ao atualizar os dados do cliente:', error);
+      setMensagem('Erro ao atualizar os dados. Tente novamente.');
     }
   };
 
@@ -43,8 +76,7 @@ function ClienteDetalhes() {
     return (
       <div className="hero">
         <div className="container">
-          <h2>Cliente Excluído</h2>
-          <p>Os dados do cliente foram removidos.</p>
+          <h2>Carregando...</h2>
         </div>
       </div>
     );
@@ -54,6 +86,7 @@ function ClienteDetalhes() {
     <div className="hero">
       <div className="container">
         <h2>Detalhes do Cliente</h2>
+        {mensagem && <p className="mensagem">{mensagem}</p>}
         {editando ? (
           <form>
             <div className="input-group">
@@ -155,14 +188,6 @@ function ClienteDetalhes() {
             <p><strong>Plano:</strong> {cliente.plano}</p>
             <button type="button" className="button" onClick={() => setEditando(true)}>
               Editar
-            </button>
-            <button
-              type="button"
-              className="button"
-              onClick={handleDelete}
-              style={{ marginTop: '10px', backgroundColor: '#e74c3c' }}
-            >
-              Excluir
             </button>
           </div>
         )}
