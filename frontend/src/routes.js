@@ -21,7 +21,7 @@ export default function AppRoutes() {
         <Route path="/login" element={<Login />} />
         
         {/* Protege a rota /detalhes com o ProtectedRoute */}
-        <Route path="/pessoa" element={<ProtectedRoute errorPage={<Error />} targetPage={<ClienteDetalhes />} />} />
+        <Route path="/pessoa/:id" element={<ProtectedRoute errorPage={<Planos />} targetPage={<ClienteDetalhes />} />} />
         
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/horarios" element={<Horarios />} />

@@ -7,6 +7,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [id, setId] = useState(0);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,13 +21,19 @@ function Login() {
       });
 
       // Exibe os dados retornados pelo servidor no console (opcional para debug)
-      console.log(response.data);
+      console.log(response.data.id);
+
+      console.log(id)
 
       // Armazena o token no sessionStorage
       sessionStorage.setItem('token', response.data.token);
+      sessionStorage.setItem('id',response.data.id)
+
+      const user_id = sessionStorage.getItem('id')
+      console.log(user_id)
 
       // Redireciona para a página de detalhes
-      navigate('/pessoa');
+      navigate(`/pessoa/${user_id}`);
     } catch (err) {
       console.error('Erro no login:', err);
 

@@ -4,39 +4,63 @@ import axios from 'axios';
 import './ClienteDetalhes.css';
 
 function ClienteDetalhes() {
-  const { clienteId } = useParams();  // Capturando o clienteId da URL
-  const [cliente, setCliente] = useState(null); // Dados do cliente
+  const { id } = useParams();  // Capturando o clienteId da URL
+  const [cliente, setCliente] = useState([]); // Dados do cliente
   const [editando, setEditando] = useState(false);
   const [mensagem, setMensagem] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchCliente = async () => {
-      const token = sessionStorage.getItem('token');
-      if (!token) {
-        navigate('/login');
-        return;
-      }
+  // useEffect(() => {
+  //   const fetchCliente = async () => {
+  //     const token = sessionStorage.getItem('token');
+  //     console.log("chegou")
+  //     if (!token) {
+  //       navigate('/login');
+  //       return;
+  //     }
 
-      try {
-        const response = await axios.get(`http://localhost:3001/pessoa/${clienteId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log(response.data);  // Adicionando log para verificar os dados
-        setCliente(response.data);
-      } catch (error) {
-        console.error('Erro ao buscar os dados do cliente:', error);
-        setMensagem('Erro ao buscar os dados do cliente.');
-        navigate('/login');
-      }
-    };
+  //     try {
+  //       const response = await axios.get(`http://localhost:3001/pessoa`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       console.log("chegou")
+  //       console.log(response.data);  // Adicionando log para verificar os dados
+  //       setCliente(response.data);
+  //     } catch (error) {
+  //       console.log("erro!!")
+  //       console.error('Erro ao buscar os dados do cliente:', error);
+  //       setMensagem('Erro ao buscar os dados do cliente.');
+  //       navigate('/login');
+  //     }
+  //   };
 
-    if (clienteId) {
-      fetchCliente();
+  //     fetchCliente();
+  // }, []);  // A dependência agora inclui clienteId
+
+  const fetchCliente = async () => {
+
+    const token = sessionStorage.getItem('token');
+    console.log("chegou")
+    if (!token) {
+      navigate('/login');
+      return;
     }
-  }, [clienteId, navigate]);  // A dependência agora inclui clienteId
+
+    const response = await axios.get(`http://localhost:3001/pessoa/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log("chegou")
+    // console.log(response.data.usuario);  // Adicionando log para verificar os dados
+    setCliente(response.data.usuario)
+  }
+
+  useEffect(() => {
+    fetchCliente()
+  }, []);  // A dependência agora inclui clienteId
 
   const handleEdit = async () => {
     try {

@@ -88,6 +88,36 @@ app.post('/login', async (req, res) => {
   });
 });
 
+app.get('/pessoa/:id',(req,res) => {
+    const { id } = req.params;
+
+    const query = `SELECT * FROM pessoa WHERE id = ?`;
+
+    db.query(query, [id], async (err, results) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        return res.status(500).json({ message: 'Erro no servidor', error: err.message });
+      }
+  
+      const usuario = results[0];
+  
+      console.log('Login bem-sucedido:', usuario);
+      return res.status(200).json({
+        usuario: {
+          id: usuario.id,
+          nome: usuario.nome,
+          email: usuario.email,
+          cpf: usuario.cpf,
+          telefone: usuario.telefone,
+          endereco: usuario.endereco,
+          data_nascimento: usuario.data_nascimento,
+          sexo: usuario.sexo,
+          plano: usuario.plano,
+        },
+      });
+    });
+})
+
 // Rota PUT para atualizar os dados do cliente
 app.put('/pessoa/:id', autenticarToken, async (req, res) => {
   const { id } = req.params;

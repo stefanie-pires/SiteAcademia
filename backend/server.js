@@ -15,7 +15,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'S13245768@',
+  password: 'root',
   database: 'db_cadastro'
 });
 
@@ -66,33 +66,37 @@ app.post('/login', (req, res) => {
 
   // Consultando o banco para verificar o usuário
   db.query(
-      `SELECT * FROM pessoa WHERE email = ?`,
-      [email],
-      async (err, results) => {
-          if (err) {
-              console.error('Erro na consulta por Login:', err);
-              return res.status(500).json({ error: 'Erro ao consultar usuário.' });
-          }
-          if (results.length === 0) {
-              return res.status(404).send('Usuário não encontrado.');
-          }
-
-          // Verificando a senha
-          const isMatch = await bcrypt.compare(senha, results[0].senha);
-          if (!isMatch) {
-            return res.status(401).send('Senha inválida.');
-          }
-
-          // Gerando o token JWT
-          const token = jwt.sign(
-              { id: results[0].id },  // Passando o ID do usuário no payload do JWT
-              SECRET_KEY,
-              { expiresIn: '2 days' }
-          );
-
-          return res.json({ token: token });
+    `SELECT * FROM pessoa WHERE email = ?`,
+    [email],
+    async (err, results) => {
+      if (err) {
+        console.error('Erro na consulta por Login:', err);
+        return res.status(500).json({ error: 'Erro ao consultar usuário.' });
       }
-  );    
+      if (results.length === 0) {
+        return res.status(404).send('Usuário não encontrado.');
+      }
+
+      // Verificando a senha
+      const isMatch = await bcrypt.compare(senha, results[0].senha);
+      if (!isMatch) {
+        return res.status(401).send('Senha inválida.');
+      }
+
+      // Gerando o token JWT
+      const token = jwt.sign(
+        { id: results[0].id },  // Passando o ID do usuário no payload do JWT
+        SECRET_KEY,
+        { expiresIn: '2 days' }
+      );
+      
+      return res.json(
+        {
+          token: token,
+          id: results[0].id
+        });
+    }
+  );
 });
 
 // Middleware para autenticação com JWT (protege rotas)
@@ -148,6 +152,37 @@ app.put('/pessoa/:id', authenticateToken, async (req, res) => {
     return res.status(200).json({ message: 'Dados do cliente atualizados com sucesso', data: result });
   });
 });
+
+app.get('/pessoa/:id', (req, res) => {
+  const { id } = req.params;
+
+  const query = `SELECT * FROM pessoa WHERE id = ?`;
+
+  db.query(query, [id], async (err, results) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+      return res.status(500).json({ message: 'Erro no servidor', error: err.message });
+    }
+
+    const usuario = results[0];
+
+    console.log('Login bem-sucedido:', usuario);
+    return res.status(200).json({
+      usuario: {
+        id: usuario.id,
+        nome: usuario.nome,
+        email: usuario.email,
+        cpf: usuario.cpf,
+        telefone: usuario.telefone,
+        endereco: usuario.endereco,
+        data_nascimento: usuario.data_nascimento,
+        sexo: usuario.sexo,
+        plano: usuario.plano,
+        senha: usuario.senha
+      },
+    });
+  });
+})
 
 // Rota DELETE para excluir um cliente (protegida com JWT)
 app.delete('/pessoa/:id', authenticateToken, (req, res) => {
